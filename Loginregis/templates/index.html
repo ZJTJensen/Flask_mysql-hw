@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <form action="/login" method="post">
+    <h1>LOGIN</h1><br>
+        email: <input type="text" name = "email"><br>
+        password: <input type="password" name = "password"><br>
+        <input type="submit" value ="log in">
+        <hr>
+    </form>
+
+    <form action="/process" method="post">
+        <h1>REGISTER</h1>
+    email: <input type="text" name ="email"> <hr>
+    first name: <input type="text" name ="first_name"><hr>
+    last name: <input type="text" name ="last_name"><hr>
+    password: <input type="password" name ="password"><hr>
+    confirm password: <input type="password" name ="confirm_password"><hr>
+    <input type="submit" value="push me">
+</form>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      {% for message in messages %}
+       <p> {{message}}</p>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+</body>
+</html>

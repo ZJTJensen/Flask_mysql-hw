@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+  <div>
+<h2>Post a Message</h2>
+<form action="/messages" method ="post" id="message_submit">
+<textarea id = "message" name ="message" rows="8" cols="80" form="message_submit"></textarea><br>
+<input type="submit" value="Post message">
+</form>
+</div>
+{{ query }}
+{{ query2 }}
+  {% for message in query %}   
+  <h3>{{message['user'] }} - {{message['message_time']}}</h3>
+  <p>{{message['message']}}</p>
+    <ul>
+      {% for comment in query2 %}
+      {% if comment['messages_id'] == message['messages_id'] %}
+      <li>
+        {{comment ['user']}} - {{comment['comment_time']}}
+        {{ comment['comment'] }}
+      </li>
+      {% endif %}
+      {% endfor %}
+    </ul>
+    <form action="/comment" method ="post">
+      <input type="text" name="comment" value="">
+      <input type="hidden" name ="messages_id" value ="{{ message['messages_id'] }}">
+      <input type="submit" value ="Comment">
+    </form>
+  {% endfor %} 
+
+
+</body>
+</html>
